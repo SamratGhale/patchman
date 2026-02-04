@@ -62,8 +62,6 @@ main :: proc() {
 		render_app(window)
 
 
-		im.End()
-
 		im.Render()
 
 		display_w, display_h := glfw.GetFramebufferSize(window)

@@ -24,7 +24,6 @@ app: App
 
 render_app :: proc(window: glfw.WindowHandle) {
 
-
 	if im.Begin("Main Window") {
 		if im.BeginCombo("Method ", fmt.ctprint(app.req_method), {.WidthFitPreview}) {
 			for type in http.Method {
@@ -42,16 +41,25 @@ render_app :: proc(window: glfw.WindowHandle) {
 			app.response_set = true
 			//client.body_destroy(body, allocation)
 		}
+	}
+	im.End()
 
+	if im.Begin("Response") {
 
 		if app.response_set {
 			#partial switch v in app.res_body {
 			case client.Body_Plain:
 				{
-					im.Text(strings.clone_to_cstring(v))
+					cstr := strings.clone_to_cstring(v)
+					im.TextWrapped(cstr)
+					//im.InputTextMultiline("#", cstr, len(cstr), {-1, -1}, {.ReadOnly})
 				}
 			}
+		} else {
+			im.TextWrapped("")
+			//im.InputTextMultiline("#", "", 1000, {-min(f32), -min(f32)}, {.ReadOnly})
 		}
 
 	}
+	im.End()
 }
