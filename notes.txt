@@ -3,10 +3,11 @@ Create simple and useful software to test apis
 Basic features
 
 1. Make basic http and https requests 
-
-TODO
 1. Show response status codes
 2. Set request body for post, put and patch methods
+3. Show response headers
+
+TODO
 3. Set headers (authorizations)
 4. Set variables
 5. Handle error responses
